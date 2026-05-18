@@ -33,14 +33,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     return translations[language][key] || translations.en[key] || key;
   };
 
-  // Prevent hydration mismatch by not rendering until mounted
-  if (!mounted) {
-    return <>{children}</>;
-  }
-
   return (
     <LanguageContext.Provider value={{ language, setLanguage: changeLanguage, t }}>
-      {children}
+      <div style={{ visibility: mounted ? 'visible' : 'hidden' }}>
+        {children}
+      </div>
     </LanguageContext.Provider>
   );
 }
