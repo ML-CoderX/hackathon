@@ -16,61 +16,45 @@ export default function DiseaseDetection() {
   const [isAnalyzing, setIsAnalyzing] = useState(false)
 
   const diseaseDatabase = {
-    earlyblight: {
-      name: 'Early Blight',
-      confidence: 92,
+    'Bacterial leaf blight': {
+      name: 'Bacterial Leaf Blight',
       severity: 'High',
-      description: 'Fungal infection causing dark spots with concentric rings on leaves.',
+      description: 'Bacterial disease causing wilting of seedlings and yellowing/drying of leaves.',
       treatment: [
-        'Remove infected leaves immediately',
-        'Apply copper fungicide',
-        'Improve air circulation',
-        'Avoid overhead watering',
+        'Use resistant varieties',
+        'Balanced use of fertilizers',
+        'Ensure proper field drainage',
+        'Apply copper-based bactericides if severe'
       ],
-      prevention: ['Use resistant varieties', 'Crop rotation', 'Proper spacing', 'Monitor closely'],
+      prevention: ['Avoid excessive nitrogen', 'Clean field equipment', 'Use disease-free seeds'],
       riskLevel: 'High',
-      affectedCrops: ['Tomato', 'Potato'],
+      affectedCrops: ['Rice'],
     },
-    powderymildew: {
-      name: 'Powdery Mildew',
-      confidence: 78,
+    'Brown spot': {
+      name: 'Brown Spot',
       severity: 'Medium',
-      description: 'White powdery coating on leaves affecting photosynthesis.',
+      description: 'Fungal disease causing brown, oval to circular spots on the leaves.',
       treatment: [
-        'Apply sulfur spray',
-        'Use neem oil',
-        'Remove heavily infected leaves',
-        'Increase watering at roots',
+        'Improve soil fertility',
+        'Apply appropriate fungicides',
+        'Ensure adequate water supply',
       ],
-      prevention: ['Maintain proper humidity', 'Space plants well', 'Avoid nitrogen excess'],
+      prevention: ['Use healthy seeds', 'Treat seeds before planting', 'Proper crop nutrition'],
       riskLevel: 'Medium',
-      affectedCrops: ['Grapes', 'Vegetables'],
+      affectedCrops: ['Rice'],
     },
-    leafspot: {
-      name: 'Leaf Spot',
-      confidence: 85,
-      severity: 'Medium',
-      description: 'Brown or black spots on leaves with yellow halos.',
+    'Leaf smut': {
+      name: 'Leaf Smut',
+      severity: 'Low',
+      description: 'Fungal disease producing slightly raised, black spots on both sides of the leaves.',
       treatment: [
-        'Prune infected leaves',
-        'Apply fungicide spray',
-        'Reduce leaf wetness',
-        'Ensure good drainage',
+        'Apply systemic fungicides if infestation is heavy',
+        'Remove and burn infected leaves',
       ],
-      prevention: ['Clean tools between plants', 'Avoid wetting foliage', 'Remove plant debris'],
-      riskLevel: 'Medium',
-      affectedCrops: ['Beans', 'Tomato'],
-    },
-    healthy: {
-      name: 'Healthy Plant',
-      confidence: 95,
-      severity: 'None',
-      description: 'No diseases detected. Plant appears healthy.',
-      treatment: ['Continue regular monitoring', 'Maintain good agricultural practices'],
-      prevention: ['Regular inspection', 'Proper irrigation', 'Adequate nutrients'],
+      prevention: ['Crop rotation', 'Field sanitation', 'Avoid excessive plant density'],
       riskLevel: 'Low',
-      affectedCrops: ['All crops'],
-    },
+      affectedCrops: ['Rice'],
+    }
   }
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,13 +73,34 @@ export default function DiseaseDetection() {
     if (!selectedFile) return
 
     setIsAnalyzing(true)
-    // Simulate AI analysis
-    setTimeout(() => {
-      const keys = Object.keys(diseaseDatabase)
-      const randomKey = keys[Math.floor(Math.random() * keys.length)]
-      setResult(diseaseDatabase[randomKey as keyof typeof diseaseDatabase])
+    
+    try {
+      const formData = new FormData()
+      formData.append('image', selectedFile)
+
+      const response = await fetch('/api/disease-detect', {
+        method: 'POST',
+        body: formData,
+      })
+      
+      const data = await response.json()
+      
+      if (data.disease) {
+        const diseaseInfo = diseaseDatabase[data.disease as keyof typeof diseaseDatabase]
+        if (diseaseInfo) {
+          setResult({
+            ...diseaseInfo,
+            confidence: data.confidence
+          })
+        }
+      } else {
+        console.error('Failed to analyze:', data.error)
+      }
+    } catch (error) {
+      console.error('Error analyzing image:', error)
+    } finally {
       setIsAnalyzing(false)
-    }, 2500)
+    }
   }
 
   const getSeverityColor = (severity: string) => {
