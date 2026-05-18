@@ -54,6 +54,54 @@ export default function DiseaseDetection() {
       prevention: ['Crop rotation', 'Field sanitation', 'Avoid excessive plant density'],
       riskLevel: 'Low',
       affectedCrops: ['Rice'],
+    },
+    'Blight': {
+      name: 'Corn Blight (Northern/Southern)',
+      severity: 'High',
+      description: 'Fungal disease causing long, elliptical, grayish-green or tan lesions on corn leaves.',
+      treatment: [
+        'Apply appropriate foliar fungicides',
+        'Deep plow infected crop residue'
+      ],
+      prevention: ['Plant resistant corn hybrids', 'Crop rotation (1-2 years away from corn)'],
+      riskLevel: 'High',
+      affectedCrops: ['Corn', 'Maize'],
+    },
+    'Common_Rust': {
+      name: 'Common Rust',
+      severity: 'Medium',
+      description: 'Fungal disease resulting in brick-red to dark brown pustules on leaves.',
+      treatment: [
+        'Apply fungicides early in the infection cycle',
+        'Monitor fields continuously'
+      ],
+      prevention: ['Use rust-resistant hybrids', 'Plant early to avoid peak infection times'],
+      riskLevel: 'Medium',
+      affectedCrops: ['Corn', 'Maize'],
+    },
+    'Gray_Leaf_Spot': {
+      name: 'Gray Leaf Spot',
+      severity: 'High',
+      description: 'Fungal infection characterized by rectangular, gray-to-tan lesions restricting photosynthesis.',
+      treatment: [
+        'Apply fungicides at the tasseling stage if severity is high',
+        'Residue management'
+      ],
+      prevention: ['Use highly resistant hybrids', 'Tillage to bury residue', 'Crop rotation'],
+      riskLevel: 'High',
+      affectedCrops: ['Corn', 'Maize'],
+    },
+    'Healthy': {
+      name: 'Healthy Plant',
+      severity: 'None',
+      description: 'No diseases detected. The plant appears healthy.',
+      treatment: [
+        'Continue regular monitoring',
+        'Maintain good agricultural practices'
+      ],
+      prevention: ['Regular inspection', 'Proper irrigation and nutrients'],
+      riskLevel: 'Low',
+      affectedCrops: ['Corn', 'Rice', 'Wheat', 'Soybean'],
     }
   }
 

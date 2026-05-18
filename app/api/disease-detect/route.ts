@@ -9,7 +9,10 @@ import path from 'path';
 // Load model state
 let classifier: knnClassifier.KNNClassifier | null = null;
 let net: mobilenet.MobileNet | null = null;
-const CLASSES = ['Bacterial leaf blight', 'Brown spot', 'Leaf smut'];
+const CLASSES = [
+    'Bacterial leaf blight', 'Brown spot', 'Leaf smut', 
+    'Blight', 'Common_Rust', 'Gray_Leaf_Spot', 'Healthy'
+];
 
 async function loadModels() {
     if (!net) {

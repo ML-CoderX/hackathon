@@ -5,7 +5,16 @@ const mobilenet = require('@tensorflow-models/mobilenet');
 const knnClassifier = require('@tensorflow-models/knn-classifier');
 const Jimp = require('jimp');
 
-const DATASET_DIR = "c:\\Users\\SAAD'S DEVICE\\Desktop\\rice_leaf_diseases";
+const DATASETS = [
+    {
+        dir: "c:\\Users\\SAAD'S DEVICE\\Desktop\\rice_leaf_diseases",
+        classes: ['Bacterial leaf blight', 'Brown spot', 'Leaf smut']
+    },
+    {
+        dir: "c:\\Users\\SAAD'S DEVICE\\Desktop\\data",
+        classes: ['Blight', 'Common_Rust', 'Gray_Leaf_Spot', 'Healthy']
+    }
+];
 const OUTPUT_FILE = path.join(__dirname, '../lib/ml/disease_model.json');
 
 async function imageToTensor(imagePath) {
@@ -27,32 +36,39 @@ async function train() {
     const net = await mobilenet.load({ version: 2, alpha: 1.0 });
     const classifier = knnClassifier.create();
 
-    const classes = ['Bacterial leaf blight', 'Brown spot', 'Leaf smut'];
+    const allClasses = DATASETS.flatMap(d => d.classes);
     
-    for (let i = 0; i < classes.length; i++) {
-        const className = classes[i];
-        const classDir = path.join(DATASET_DIR, className);
-        if (!fs.existsSync(classDir)) {
-            console.log(`Directory not found: ${classDir}`);
-            continue;
-        }
+    let classIndexCounter = 0;
 
-        const files = fs.readdirSync(classDir).filter(f => f.match(/\.(jpg|jpeg|png)$/i));
-        console.log(`Training ${className} (${files.length} images)...`);
-
-        for (let j = 0; j < files.length; j++) {
-            const imgPath = path.join(classDir, files[j]);
-            try {
-                const tensor = await imageToTensor(imgPath);
-                const activation = net.infer(tensor, true);
-                classifier.addExample(activation, i);
-                
-                // Cleanup memory
-                tensor.dispose();
-                if (j % 10 === 0) console.log(`  Processed ${j}/${files.length} images for ${className}`);
-            } catch (e) {
-                console.error(`Error processing ${imgPath}:`, e);
+    for (const dataset of DATASETS) {
+        for (const className of dataset.classes) {
+            const classDir = path.join(dataset.dir, className);
+            if (!fs.existsSync(classDir)) {
+                console.log(`Directory not found: ${classDir}`);
+                classIndexCounter++;
+                continue;
             }
+
+            const files = fs.readdirSync(classDir).filter(f => f.match(/\.(jpg|jpeg|png)$/i));
+            
+            // Limit to 50 images per class for faster hackathon training
+            const maxImages = Math.min(files.length, 50);
+            console.log(`Training ${className} (${maxImages} images)...`);
+
+            for (let j = 0; j < maxImages; j++) {
+                const imgPath = path.join(classDir, files[j]);
+                try {
+                    const tensor = await imageToTensor(imgPath);
+                    const activation = net.infer(tensor, true);
+                    classifier.addExample(activation, classIndexCounter);
+                    
+                    tensor.dispose();
+                    if (j % 10 === 0) console.log(`  Processed ${j}/${files.length} images for ${className}`);
+                } catch (e) {
+                    console.error(`Error processing ${imgPath}:`, e);
+                }
+            }
+            classIndexCounter++;
         }
     }
 
