@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { VoiceAssistant } from '@/components/voice-assistant'
+import { LanguageProvider } from '@/lib/i18n/LanguageContext'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -34,8 +35,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-background">
       <body className="font-sans antialiased">
-        {children}
-        <VoiceAssistant />
+        <LanguageProvider>
+          {children}
+          <VoiceAssistant />
+        </LanguageProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

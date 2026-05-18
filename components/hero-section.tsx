@@ -5,8 +5,11 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useLanguage } from '@/lib/i18n/LanguageContext'
 
 export function HeroSection() {
+  const { t } = useLanguage()
+
   return (
     <section className="relative py-16 md:py-28 overflow-hidden bg-gradient-to-b from-primary/8 via-transparent to-transparent">
       {/* Animated background elements */}
@@ -36,23 +39,23 @@ export function HeroSection() {
               whileHover={{ scale: 1.05 }}
             >
               <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4 border border-primary/20">
-                🌱 Smart Farming Technology
+                {t('smart_farming')}
               </span>
             </motion.div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-              AI-Powered Agricultural Advisory
+              {t('hero_title')}
             </h1>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl">
-              Get real-time crop recommendations, disease detection, mandi price insights, and personalized farming advice powered by advanced AI technology.
+              {t('hero_subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/dashboard">
                 <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto px-8 py-6 text-base font-semibold shadow-lg hover:shadow-xl transition-shadow">
-                  Start Farming Smarter
+                  {t('start_farming')}
                 </Button>
               </Link>
               <Button variant="outline" className="w-full sm:w-auto px-8 py-6 text-base font-semibold border-primary/20">
-                Learn More
+                {t('learn_more')}
               </Button>
             </div>
           </motion.div>
@@ -112,11 +115,13 @@ export function HeroSection() {
 }
 
 export function StatsSection() {
+  const { t } = useLanguage()
+
   const stats = [
-    { icon: Users, label: 'Active Farmers', value: '50K+', color: 'text-primary' },
-    { icon: Leaf, label: 'Crops Monitored', value: '200+', color: 'text-accent' },
-    { icon: Zap, label: 'Predictions Daily', value: '1M+', color: 'text-primary' },
-    { icon: TrendingUp, label: 'Avg Yield Increase', value: '35%', color: 'text-accent' },
+    { icon: Users, label: t('active_farmers'), value: '50K+', color: 'text-primary' },
+    { icon: Leaf, label: t('crops_monitored'), value: '200+', color: 'text-accent' },
+    { icon: Zap, label: t('predictions_daily'), value: '1M+', color: 'text-primary' },
+    { icon: TrendingUp, label: t('avg_yield_increase'), value: '35%', color: 'text-accent' },
   ]
 
   return (

@@ -123,8 +123,25 @@ export default function DiseaseDetection() {
     setIsAnalyzing(true)
     
     try {
+      // Convert image to JPEG using canvas to ensure compatibility (solves WebP issues)
+      const img = new Image()
+      img.src = URL.createObjectURL(selectedFile)
+      await new Promise(resolve => { img.onload = resolve })
+      
+      const canvas = document.createElement('canvas')
+      canvas.width = 224
+      canvas.height = 224
+      const ctx = canvas.getContext('2d')
+      if (!ctx) throw new Error('Could not get canvas context')
+      
+      ctx.drawImage(img, 0, 0, 224, 224)
+      
+      const blob = await new Promise<Blob>((resolve) => {
+        canvas.toBlob((b) => resolve(b as Blob), 'image/jpeg', 0.9)
+      })
+
       const formData = new FormData()
-      formData.append('image', selectedFile)
+      formData.append('image', blob, 'image.jpg')
 
       const response = await fetch('/api/disease-detect', {
         method: 'POST',

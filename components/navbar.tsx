@@ -5,9 +5,11 @@ import { Leaf, Menu } from 'lucide-react'
 import { Button } from './ui/button'
 import { LanguageSwitcher } from './language-switcher'
 import { useState } from 'react'
+import { useLanguage } from '@/lib/i18n/LanguageContext'
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { t } = useLanguage()
 
   return (
     <nav className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur-sm">
@@ -22,19 +24,19 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <Link href="/" className="text-sm text-foreground hover:text-primary transition-colors">
-              Home
+              {t('nav_home')}
             </Link>
             <Link href="/dashboard" className="text-sm text-foreground hover:text-primary transition-colors">
-              Dashboard
+              {t('nav_dashboard')}
             </Link>
             <Link href="/crops" className="text-sm text-foreground hover:text-primary transition-colors">
-              Crops
+              {t('nav_crops')}
             </Link>
             <Link href="/disease-detection" className="text-sm text-foreground hover:text-primary transition-colors">
-              Disease Detection
+              {t('nav_disease')}
             </Link>
             <Link href="/mandi-prices" className="text-sm text-foreground hover:text-primary transition-colors">
-              Mandi Prices
+              {t('nav_mandi')}
             </Link>
             <LanguageSwitcher />
           </div>
@@ -54,19 +56,19 @@ export function Navbar() {
         {mobileMenuOpen && (
           <div className="md:hidden pb-4 space-y-2">
             <Link href="/" className="block px-4 py-2 text-sm text-foreground hover:bg-muted rounded-md">
-              Home
+              {t('nav_home')}
             </Link>
             <Link href="/dashboard" className="block px-4 py-2 text-sm text-foreground hover:bg-muted rounded-md">
-              Dashboard
+              {t('nav_dashboard')}
             </Link>
             <Link href="/crops" className="block px-4 py-2 text-sm text-foreground hover:bg-muted rounded-md">
-              Crops
+              {t('nav_crops')}
             </Link>
             <Link href="/disease-detection" className="block px-4 py-2 text-sm text-foreground hover:bg-muted rounded-md">
-              Disease Detection
+              {t('nav_disease')}
             </Link>
             <Link href="/mandi-prices" className="block px-4 py-2 text-sm text-foreground hover:bg-muted rounded-md">
-              Mandi Prices
+              {t('nav_mandi')}
             </Link>
           </div>
         )}
