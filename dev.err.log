@@ -1,0 +1,32 @@
+[browser] You are trying to animate shadow from "0" to "lg". "lg" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable (file://C:/Users/SAAD'S DEVICE/Desktop/hackathon/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2477:13)
+[browser] You are trying to animate shadow from "lg" to "0". "lg" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable (file://C:/Users/SAAD'S DEVICE/Desktop/hackathon/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2477:13)
+[browser] You are trying to animate shadow from "0" to "lg". "lg" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable (file://C:/Users/SAAD'S DEVICE/Desktop/hackathon/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2477:13)
+[browser] You are trying to animate shadow from "lg" to "0". "lg" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable (file://C:/Users/SAAD'S DEVICE/Desktop/hackathon/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2477:13)
+[browser] You are trying to animate shadow from "0" to "lg". "lg" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable (file://C:/Users/SAAD'S DEVICE/Desktop/hackathon/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2477:13)
+[browser] You are trying to animate shadow from "lg" to "0". "lg" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable (file://C:/Users/SAAD'S DEVICE/Desktop/hackathon/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2477:13)
+Disease prediction error: TypeError: fetch failed
+    at ignore-listed frames {
+  [cause]: Error [ConnectTimeoutError]: Connect Timeout Error (attempted address: tfhub.dev:443, timeout: 10000ms)
+      at ignore-listed frames {
+    code: 'UND_ERR_CONNECT_TIMEOUT'
+  }
+}
+[browser] Failed to analyze: Failed to analyze image 
+    at handleAnalyze (file://C:/Users/SAAD'S DEVICE/Desktop/hackathon/.next/dev/static/chunks/_0_d7hju._.js:1058:25) (file://C:/Users/SAAD'S DEVICE/Desktop/hackathon/.next/dev/static/chunks/_0_d7hju._.js:1058:25)
+Disease prediction error: TypeError: fetch failed
+    at ignore-listed frames {
+  [cause]: Error [ConnectTimeoutError]: Connect Timeout Error (attempted addresses: 2404:6800:4007:807::201b:443, 142.251.222.187:443, 2404:6800:4007:804::201b:443, 142.251.223.27:443, 2404:6800:4007:817::201b:443, 142.251.222.219:443, 2404:6800:4007:816::201b:443, 142.251.221.187:443, 142.251.43.59:443, 142.250.206.27:443, 172.217.24.123:443, 142.251.43.155:443, 142.250.67.59:443, 142.251.221.155:443, 142.250.207.91:443, 142.251.220.123:443, 142.250.206.59:443, 142.251.221.219:443, 172.217.24.219:443, 142.251.222.155:443, timeout: 10000ms)
+      at ignore-listed frames {
+    code: 'UND_ERR_CONNECT_TIMEOUT'
+  }
+}
+[browser] Failed to analyze: Failed to analyze image 
+    at handleAnalyze (file://C:/Users/SAAD'S DEVICE/Desktop/hackathon/.next/dev/static/chunks/_0_d7hju._.js:1058:25) (file://C:/Users/SAAD'S DEVICE/Desktop/hackathon/.next/dev/static/chunks/_0_d7hju._.js:1058:25)
+[browser] You are trying to animate shadow from "0" to "lg". "lg" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable (file://C:/Users/SAAD'S DEVICE/Desktop/hackathon/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2477:13)
+[browser] You are trying to animate shadow from "lg" to "0". "lg" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable (file://C:/Users/SAAD'S DEVICE/Desktop/hackathon/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2477:13)
+[browser] You are trying to animate shadow from "0" to "lg". "lg" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable (file://C:/Users/SAAD'S DEVICE/Desktop/hackathon/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2477:13)
+[browser] You are trying to animate shadow from "lg" to "0". "lg" is not an animatable value.. For more information and steps for solving, visit https://motion.dev/troubleshooting/value-not-animatable (file://C:/Users/SAAD'S DEVICE/Desktop/hackathon/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2477:13)
+
+============================
+Hi, looks like you are running TensorFlow.js in Node.js. To speed things up dramatically, install our node backend, visit https://github.com/tensorflow/tfjs-node for more details. 
+============================
